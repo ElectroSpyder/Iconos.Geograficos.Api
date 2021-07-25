@@ -10,9 +10,9 @@
     {
         Task<IEnumerable<IconosReograficos>> GetAll();
         Task<IconosReograficos> Get(int id);
-        Task<IconosReograficos> Add(IconosReograficos entity);
-        Task<IconosReograficos> Update(IconosReograficos entity);
-        Task<IconosReograficos> Delete(int id);
+        Task<bool> Add(IconosReograficos entity);
+        Task<bool> Update(IconosReograficos entity);
+        Task<bool> Delete(int id);
         Task<IEnumerable<IconosReograficos>> GetByFunc(Expression<Func<IconosReograficos, bool>> filter);
     }
 }

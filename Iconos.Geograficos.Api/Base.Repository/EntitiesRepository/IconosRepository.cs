@@ -18,14 +18,23 @@
             context = iconoDBContext;
         }
 
-        public Task<IconosReograficos> Add(IconosReograficos entity)
+        public async Task<bool> Add(IconosReograficos entity)
         {
-            throw new NotImplementedException();
+            context.Iconos.Add(entity);
+            await context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<IconosReograficos> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = context.Iconos.FirstOrDefault(x => x.IdIcono == id);
+            if (entity != null)
+            {
+                context.Iconos.Remove(entity);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         public async Task<IconosReograficos> Get(int id)
@@ -43,9 +52,13 @@
             return await context.Iconos.Where(filter).ToListAsync();
         }
 
-        public Task<IconosReograficos> Update(IconosReograficos entity)
+        public async Task<bool> Update(IconosReograficos entity)
         {
-            throw new NotImplementedException();
+
+            context.Iconos.Update(entity);
+            await context.SaveChangesAsync();
+            return true;
+
         }
     }
 }
