@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Iconos : Imagenes
+    public class IconosReograficos : Imagenes
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

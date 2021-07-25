@@ -1,19 +1,17 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Iconos.Geograficos.Api
 {
+    using Base.Repository.EntitiesRepository;
+    using Base.Repository.IRepository;
+    using Iconos.Geograficos.Model.Context;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
+    using System.Reflection;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -28,6 +26,12 @@ namespace Iconos.Geograficos.Api
         {
 
             services.AddControllers();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddDbContext<IconoDBContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IIconoRepository, IconosRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Iconos.Geograficos.Api", Version = "v1" });
