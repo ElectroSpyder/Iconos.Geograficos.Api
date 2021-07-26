@@ -46,7 +46,7 @@
         }
 
         [HttpGet("/get/cities")]
-        public async Task<ActionResult<SoloCiudadViewModel[]>> Get()
+        public async Task<ActionResult<SoloCiudadViewModel[]>> Getcities()
         {
             try
             {
@@ -78,6 +78,28 @@
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CiudadViewModel>> Get()
+        {
+            try
+            {
+                var listEntity = await _repository.GetAll();
+               
+                if (listEntity!= null)
+                {
+                     var model = _mapper.Map<CiudadViewModel[]>(listEntity);
+                    return Ok(model);
+                }
+
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }            
+
         }
 
         [HttpPost]
