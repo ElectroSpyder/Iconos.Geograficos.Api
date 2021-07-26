@@ -30,7 +30,10 @@ namespace Iconos.Geograficos.Api
 
             services.AddDbContext<IconoDBContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IIconoRepository, IconosRepository>();
+            services.AddScoped<ICiudadRepository, CiudadRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             services.AddSwaggerGen(c =>
             {

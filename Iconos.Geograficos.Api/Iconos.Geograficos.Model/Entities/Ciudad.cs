@@ -17,7 +17,7 @@ namespace Iconos.Geograficos.Model.Entities
         [Column(TypeName = "decimal(18,4)")]
         public decimal SuperficieTotal { get; set; }
 
-        public ICollection<IconosReograficos> Iconos { get; set; }
+        public ICollection<IconosReograficos> IconosGeograficos { get; set; }
 
         public int IdContinente { get; set; }
         public Continente Continente { get; set; }

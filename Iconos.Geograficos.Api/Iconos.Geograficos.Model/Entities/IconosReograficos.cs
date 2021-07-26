@@ -19,6 +19,7 @@
 
         public string Historia { get; set; }
 
-        public Ciudad IdCiudad { get; set; }
+        public Ciudad Ciudad { get; set; }
+        public int IdCiudad { get; set; }
     }
 }

@@ -3,8 +3,7 @@
 namespace Iconos.Geograficos.Model.Entities
 {
     public class Imagenes
-    {
-        public byte[] Imagen { get; set; }
+    {        
         [Display(Name = "Denominación")]
         public string Denominacion { get; set; }
 
