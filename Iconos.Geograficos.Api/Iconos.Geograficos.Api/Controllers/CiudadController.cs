@@ -9,7 +9,6 @@
     using Microsoft.AspNetCore.Routing;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     [ApiController]
@@ -27,7 +26,7 @@
             this.linkGenerator = linkGenerator;
         }
 
-        [HttpGet("{den}")]      //denominacion
+        [HttpGet("{den}")]      //get por denominacion
         public async Task<ActionResult> Get(string den)
         {
             try
@@ -45,7 +44,7 @@
             }
         }
 
-        [HttpGet("/get/cities")]
+        [HttpGet("/get/cities")]    //6_ listado de ciudades
         public async Task<ActionResult<SoloCiudadViewModel[]>> Getcities()
         {
             try
@@ -80,7 +79,7 @@
             }
         }
 
-        [HttpGet]
+        [HttpGet]   //7_ TODO: probar, get todas las ciudades junto a los iconos geograficos 
         public async Task<ActionResult<CiudadViewModel>> Get()
         {
             try
