@@ -1,8 +1,9 @@
 ﻿namespace Iconos.Geograficos.Model.ViewModels
 {
+    using Iconos.Geograficos.Model.Entities;
     using System;
    
-    public class IconosGeograficosViewModel
+    public class IconosGeograficosViewModel : Imagenes
     {
         
         public int IdIcono { get; set; }

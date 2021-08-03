@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Routing;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     [ApiController]
@@ -45,13 +46,13 @@
         }
 
         [HttpGet("/get/cities")]    //6_ listado de ciudades
-        public async Task<ActionResult<SoloCiudadViewModel[]>> Getcities()
+        public async Task<ActionResult<List<SoloCiudadViewModel>>> Getcities()
         {
             try
             {
                 var listEntity = await _repository.GetAll();
 
-                if (listEntity != null)
+                if (listEntity.Any())
                 {
                     var model = _mapper.Map<CiudadViewModel[]>(listEntity);
                     var result = new List<SoloCiudadViewModel>();

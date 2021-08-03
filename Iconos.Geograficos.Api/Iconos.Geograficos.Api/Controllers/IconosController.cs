@@ -4,6 +4,7 @@
     using Base.Repository.IRepository;
     using Iconos.Geograficos.Api.Model;
     using Iconos.Geograficos.Model.Entities;
+    using Iconos.Geograficos.Model.ViewModels;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Routing;
@@ -113,6 +114,38 @@
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
+        }
+
+        [HttpGet("/icons")]
+        public async Task<ActionResult<List<IconosGeograficosViewModel>>> SearchByDate(DateTime date)
+        {
+            try
+            {
+                var result = await _repository.GetByFunc(x => x.FechaCreacion == date);
+                if (result == null) return NotFound();
+
+                return Ok(_mapper.Map<IconosGeograficosViewModel>(result));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet("/icons")]
+        public async Task<ActionResult<List<IconosGeograficosViewModel>>> SearchByCity(int idCity)
+        {
+            try
+            {
+                var result = await _repository.GetByFunc(x => x.Ciudad.IdCiudad == idCity);
+                if (result == null) return NotFound();
+
+                return Ok(_mapper.Map<IconosGeograficosViewModel>(result));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }
