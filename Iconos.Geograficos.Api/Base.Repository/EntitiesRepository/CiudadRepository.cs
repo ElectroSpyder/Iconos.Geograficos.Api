@@ -48,9 +48,10 @@
             return await context.Ciudades.ToListAsync();
         }       
 
-        public async Task<IEnumerable<Ciudad>> GetByFunc(Expression<Func<Ciudad, bool>> filter)
+        public async Task<Ciudad> GetByFunc(Expression<Func<Ciudad, bool>> filter)
         {
-            return await context.Ciudades.Where(filter).ToListAsync();
+            if (filter == null) return null;
+            return await context.Ciudades.FindAsync(filter);
         }
 
         public async Task<bool> Update(Ciudad entity)

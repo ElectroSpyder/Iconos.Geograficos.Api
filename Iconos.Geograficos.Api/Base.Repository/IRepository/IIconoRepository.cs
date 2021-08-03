@@ -13,6 +13,6 @@
         Task<bool> Add(IconosReograficos entity);
         Task<bool> Update(IconosReograficos entity);
         Task<bool> Delete(int id);
-        Task<IEnumerable<IconosReograficos>> GetByFunc(Expression<Func<IconosReograficos, bool>> filter);
+        Task<IconosReograficos> GetByFunc(Expression<Func<IconosReograficos, bool>> filter);
     }
 }

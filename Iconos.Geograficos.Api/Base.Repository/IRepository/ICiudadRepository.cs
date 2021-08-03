@@ -13,6 +13,6 @@
         Task<bool> Add(Ciudad entity);
         Task<bool> Update(Ciudad entity);
         Task<bool> Delete(int id);
-        Task<IEnumerable<Ciudad>> GetByFunc(Expression<Func<Ciudad, bool>> filter);
+        Task<Ciudad> GetByFunc(Expression<Func<Ciudad, bool>> filter);
     }
 }

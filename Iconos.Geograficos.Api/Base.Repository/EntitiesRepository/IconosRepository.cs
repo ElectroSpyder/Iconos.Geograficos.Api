@@ -47,9 +47,10 @@
             return await context.Iconos.ToListAsync();
         }
 
-        public async Task<IEnumerable<IconosReograficos>> GetByFunc(Expression<Func<IconosReograficos, bool>> filter)
+        public async Task<IconosReograficos> GetByFunc(Expression<Func<IconosReograficos, bool>> filter)
         {
-            return await context.Iconos.Where(filter).ToListAsync();
+            if (filter == null) return null;
+            return await context.Iconos.FindAsync(filter);
         }
 
         public async Task<bool> Update(IconosReograficos entity)

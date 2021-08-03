@@ -17,13 +17,13 @@
     {
         private readonly ICiudadRepository _repository;
         private readonly IMapper _mapper;
-        private readonly LinkGenerator linkGenerator;
+        private readonly LinkGenerator _linkGenerator;
 
         public CiudadController(ICiudadRepository ciudadRepository, IMapper mapper, LinkGenerator linkGenerator)
         {
             _repository = ciudadRepository;
             _mapper = mapper;
-            this.linkGenerator = linkGenerator;
+            _linkGenerator = linkGenerator;
         }
 
         [HttpGet("{den}")]      //get por denominacion

@@ -48,9 +48,10 @@
             return await context.Usuarios.ToListAsync();
         }
 
-        public async Task<IEnumerable<Usuario>> GetByFunc(Expression<Func<Usuario, bool>> filter)
+        public async Task<Usuario> GetByFunc(Expression<Func<Usuario, bool>> filter)
         {
-            return await context.Usuarios.Where(filter).ToListAsync();
+            if (filter == null) return null;
+            return await context.Usuarios.FindAsync(filter);
         }
 
         public async Task<bool> Update(Usuario entity)
