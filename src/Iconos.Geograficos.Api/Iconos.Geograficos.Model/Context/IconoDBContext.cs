@@ -12,6 +12,6 @@
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<IconosReograficos> Iconos { get; set; }
         public DbSet<Continente> Continentes { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        
     }
 }

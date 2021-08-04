@@ -33,7 +33,7 @@ namespace Iconos.Geograficos.Api
             
             services.AddScoped<IIconoRepository, IconosRepository>();
             services.AddScoped<ICiudadRepository, CiudadRepository>();
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            //services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             services.AddSwaggerGen(c =>
             {
