@@ -116,7 +116,8 @@
 
         }
 
-        [HttpGet("/icons")]
+        [HttpGet()]
+        [Route("search/date")]
         public async Task<ActionResult<List<IconosGeograficosViewModel>>> SearchByDate(DateTime date)
         {
             try
@@ -132,7 +133,8 @@
             }
         }
 
-        [HttpGet("/icons")]
+        [HttpGet()]
+        [Route("search/idCity")]
         public async Task<ActionResult<List<IconosGeograficosViewModel>>> SearchByCity(int idCity)
         {
             try
