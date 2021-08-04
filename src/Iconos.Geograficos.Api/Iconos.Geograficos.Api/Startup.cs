@@ -3,8 +3,10 @@ namespace Iconos.Geograficos.Api
     using Base.Repository.EntitiesRepository;
     using Base.Repository.IRepository;
     using Iconos.Geograficos.Model.Context;
+    using Iconos.Geograficos.Model.Entities;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -24,13 +26,22 @@ namespace Iconos.Geograficos.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<Usuario, IdentityRole>()
+                .AddEntityFrameworkStores<UsuarioDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddControllers();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddDbContext<IconoDBContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<UsuarioDbContext>(options =>
+            {                
+                options.UseSqlServer(Configuration.GetConnectionString("UsuarioIdentityConnection"));
+            });
             
+
             services.AddScoped<IIconoRepository, IconosRepository>();
             services.AddScoped<ICiudadRepository, CiudadRepository>();
             //services.AddScoped<IUsuarioRepository, UsuarioRepository>();
