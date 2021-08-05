@@ -13,6 +13,6 @@
         Task<bool> Add(Usuario entity);
         Task<bool> Update(Usuario entity);
         Task<bool> Delete(int id);
-        Task<Usuario> GetByFunc(Expression<Func<Ciudad, bool>> filter);
+        Task<Usuario> GetByFunc(Expression<Func<Usuario, bool>> filter);
     }
 }
