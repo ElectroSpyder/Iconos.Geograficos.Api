@@ -1,0 +1,18 @@
+{
+  "denominacion": "Cusco",
+  "imagenUrl": "Test1",
+  "imagenThumbnailUrl": "",
+  "cantidadHabitantes": 1000,
+  "superficieTotal": 1000,
+  "iconosGeograficos": [
+    {
+      "denominacion": "Monumento al Inca Pachautec",
+      "imagenUrl": "elinca",
+      "imagenThumbnailUrl": "https://www.boletomachupicchu.com/gutblt/wp-content/uploads/2018/03/inca-pachacutec-monumento.jpg",
+      "idIcono": 0,
+      "fechaCreacion": "1992-01-01",
+      "altura": 11.5,
+      "historia": "Pachacutec (1400 – 1471) fue el noveno gobernante inca, quien expandió, organizó y creó el nuevo imperio incaico"
+    }
+  ]
+}

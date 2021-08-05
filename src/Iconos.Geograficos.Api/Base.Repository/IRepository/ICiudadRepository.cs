@@ -3,6 +3,7 @@
     using Iconos.Geograficos.Model.Entities;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
@@ -13,6 +14,6 @@
         Task<bool> Add(Ciudad entity);
         Task<bool> Update(Ciudad entity);
         Task<bool> Delete(int id);
-        Task<Ciudad> GetByFunc(Expression<Func<Ciudad, bool>> filter);
+        IQueryable<Ciudad> GetByFunc(Expression<Func<Ciudad, bool>> filter);
     }
 }

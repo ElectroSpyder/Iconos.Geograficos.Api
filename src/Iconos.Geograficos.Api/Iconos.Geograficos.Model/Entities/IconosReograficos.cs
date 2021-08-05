@@ -15,7 +15,7 @@
         [Display(Name = "Fecha de Creación")]
         public DateTime FechaCreacion { get; set; }
 
-        public int Altura { get; set; }
+        public decimal Altura { get; set; }
 
         public string Historia { get; set; }
 

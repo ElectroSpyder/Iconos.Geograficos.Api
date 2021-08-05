@@ -1,5 +1,6 @@
 ﻿using Iconos.Geograficos.Model.Entities;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Iconos.Geograficos.Model.ViewModels
 {
@@ -8,7 +9,6 @@ namespace Iconos.Geograficos.Model.ViewModels
         /*public string ImagenUrl { get; set; }
         public string Denominacion { get; set; }*/
         public int CantidadHabitantes { get; set; }
-       
         public decimal SuperficieTotal { get; set; }
         public ICollection<IconosGeograficosViewModel> IconosGeograficos { get; set; }
 

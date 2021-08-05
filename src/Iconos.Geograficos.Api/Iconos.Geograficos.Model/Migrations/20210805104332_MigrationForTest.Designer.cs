@@ -4,14 +4,16 @@ using Iconos.Geograficos.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Iconos.Geograficos.Model.Migrations
 {
     [DbContext(typeof(IconoDBContext))]
-    partial class IconoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210805104332_MigrationForTest")]
+    partial class MigrationForTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,8 +84,8 @@ namespace Iconos.Geograficos.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Altura")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Altura")
+                        .HasColumnType("int");
 
                     b.Property<int?>("CiudadIdCiudad")
                         .HasColumnType("int");

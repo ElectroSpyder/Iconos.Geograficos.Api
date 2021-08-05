@@ -11,6 +11,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     [ApiController]
@@ -51,7 +52,7 @@
                 var listIconos = await _repository.GetAll();
                 if (listIconos == null) return NotFound();
 
-                if (!listIconos.Any()) return StatusCode(StatusCodes.Status204NoContent, "Lista sin Iconos Geograficos");
+                if (!listIconos.Any()) return StatusCode(StatusCodes.Status204NoContent, "Lista sin Iconos Geográficos");
 
                 var result = _mapper.Map<List<IconosGeograficosViewModel>>(listIconos.ToList());
 
@@ -143,6 +144,26 @@
                 if (result == null) return NotFound();
 
                 return Ok(_mapper.Map<IconosGeograficosViewModel>(result));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpDelete("{nombre}")]
+        public async Task<ActionResult<bool>> Delete(string nombre)
+        {
+            try
+            {
+                var entityToDelete = await _repository.GetByFunc(x => x.Denominacion == nombre);
+                if (entityToDelete == null) return NotFound();
+
+                var result = await _repository.Delete(entityToDelete.IdCiudad);
+
+                if (result) return Ok(true);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Algo ocurrio que no se pudo borrar el genero");
             }
             catch (Exception ex)
             {

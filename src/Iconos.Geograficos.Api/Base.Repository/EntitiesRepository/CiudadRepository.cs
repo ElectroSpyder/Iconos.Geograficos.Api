@@ -28,14 +28,21 @@
 
         public async Task<bool> Delete(int id)
         {
-            var entity = context.Ciudades.FirstOrDefault(x => x.IdCiudad == id);
-            if (entity != null)
+            var entity = await context.Ciudades.Include(x => x.IconosGeograficos).SingleAsync(x=> x.IdCiudad == id);
+            if (entity == null) return false;
+
+            if (entity.IconosGeograficos.Any())
             {
-                context.Ciudades.Remove(entity);
-                await context.SaveChangesAsync();
-                return true;
+                foreach (var item in entity.IconosGeograficos)
+                {
+                    context.Iconos.Remove(item);
+                }              
             }
-            return false;
+           
+            context.Ciudades.Remove(entity);
+            await context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<Ciudad> Get(int id)
@@ -48,10 +55,11 @@
             return await context.Ciudades.ToListAsync();
         }       
 
-        public async Task<Ciudad> GetByFunc(Expression<Func<Ciudad, bool>> filter)
-        {
-            if (filter == null) return null;
-            return await context.Ciudades.FindAsync(filter);
+        public IQueryable<Ciudad> GetByFunc(Expression<Func<Ciudad, bool>> filter)
+        {            
+            if (filter != null)
+                return context.Ciudades.Where(filter).AsQueryable();
+            return null;
         }
 
         public async Task<bool> Update(Ciudad entity)
